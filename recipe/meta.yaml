@@ -1,9 +1,9 @@
 {% set name = "pyfiglet" %}
-{% set version = "0.7.5" %}
+{% set version = "0.8.post0" %}
 {% set compress_type = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash = "446194e1fc3257ffc8024eafd3b486394847597f6210278d76bd582850205e12" %}
-{% set build = 1 %}
+{% set hash = "2994451ea67c77cd97f81f52087ccae6921d78d9402920995419893a979b5ace" %}
+{% set build = 0 %}
 
 package:
   name: {{ name|lower }}
