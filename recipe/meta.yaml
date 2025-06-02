@@ -1,8 +1,7 @@
 {% set name = "pyfiglet" %}
-{% set version = "0.8.post1" %}
+{% set version = "1.0.3" %}
 {% set compress_type = "tar.gz" %}
-{% set hash_type = "sha256" %}
-{% set hash = "c6c2321755d09267b438ec7b936825a4910fec696292139e664ca8670e103639" %}
+{% set hash = "bad3b55d2eccb30d4693ccfd94573c2a3477dd75f86a0e5465cea51bdbfe2875" %}
 {% set build = 0 %}
 
 package:
@@ -11,15 +10,15 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.{{ compress_type }}
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
-  {{ hash_type }}: {{ hash }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ compress_type }}
+  sha256: {{ hash }}
 
 build:
   noarch: python
   entry_points:
     - pyfiglet = pyfiglet:main
   number: {{ build }}
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
