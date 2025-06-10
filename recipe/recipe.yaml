@@ -22,20 +22,21 @@ build:
 
 requirements:
   host:
-    - python >=3.9
+    - python ${{ python_min }}.*
     - setuptools >=68.0.0
     - pip
   run:
-    - python >=3.9
+    - python >=${{ python_min }}
 
 tests:
   - python:
       imports:
         - pyfiglet
       pip_check: true
+      python_version: ${{ python_min }}.*
   - requirements:
       run:
-        - pip
+        - python ${{ python_min }}.*
     script:
       - pyfiglet --help
 
@@ -48,3 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - thewchan
+    - terminaltables
