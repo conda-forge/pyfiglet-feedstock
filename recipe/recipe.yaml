@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: pyfiglet
+  version: 1.0.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyfiglet-${{ version }}.tar.gz
+  sha256: bad3b55d2eccb30d4693ccfd94573c2a3477dd75f86a0e5465cea51bdbfe2875
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pyfiglet = pyfiglet:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pyfiglet
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pyfiglet --help
+
+about:
+  summary: Pure-python FIGlet implementation
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pwaller/pyfiglet
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - pmlandwehr
